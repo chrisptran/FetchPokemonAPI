@@ -1,10 +1,11 @@
 import React from 'react'
+import axios from 'axios'
 
 const FetchPokemon = (props) => {
 
     
 
-    const handleClick = () => {
+    const handleFetch = () => {
         fetch("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
         .then(response => {
             console.log(response);
@@ -18,9 +19,17 @@ const FetchPokemon = (props) => {
 
     }
 
+    const handleAxios = () => {
+        axios.get("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
+        .then(response => {
+            props.getPokemon(response.data.results);
+        })
+    }
+
     return (
         <div>
-            <button onClick={handleClick}>Fetch Pokemon</button>
+            <button onClick={handleFetch}>Fetch Pokemon</button>
+            <button onClick={handleAxios}>Axios Pokemon</button>
 
         </div>
     )
